@@ -85,3 +85,29 @@ if($r['status'] == 200 ){
   return false;
 }
 }
+
+function Day($day)
+{
+    date_default_timezone_set('Asia/Tehran');
+    $date = date('m/d/Y h:i:s a', time());
+    function getWeekday($date)
+    {
+        return date('l', strtotime($date));
+    }
+
+    $days = [
+        0 => 'Sunday',
+        1 => 'Monday',
+        2 => 'Tuesday',
+        3 => 'Wednesday',
+        4 => 'Thursday',
+        5 => 'Friday',
+        6 => 'Saturday',
+    ];
+    $numberOfCurrentDay = array_search(getWeekday($date), $days);
+    for ($i = 0; $i < 3; $i++) {
+        if ($day == $days[($numberOfCurrentDay + $i) % 7]) {
+            return true;
+        }
+    }
+}
